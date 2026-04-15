@@ -1,0 +1,27 @@
+@import 'Shopreviews_Connect::css/source/helper/_variables.less';
+@import 'Shopreviews_Connect::css/source/helper/_stars.less';
+@import 'Shopreviews_Connect::css/source/helper/_modal.less';
+
+@import 'Shopreviews_Connect::css/source/widget/_badge-widget.less';
+@import 'Shopreviews_Connect::css/source/widget/_carousel-widget.less';
+
+@import 'Shopreviews_Connect::css/source/slick/_slick.less';
+@import 'Shopreviews_Connect::css/source/_reviews-page.less';
+
+
+& when (@critical) {
+	[data-element*="shopreviews-connect-textual-widget"] [data-element="box-stars"] svg,
+	[data-element*="shopreviews-connect-textual-reviews"] [data-element="box-stars"] svg, 
+	[data-element*="shopreviews-connect-badge-reviews"] [data-element="box-stars"] svg, 
+	[data-element*="shopreviews-connect-carousel-widget"] [data-element="box-stars"] svg {
+		max-width: fit-content;
+	}
+
+	[data-element*="shopreviews-connect-carousel-widget"] .slick-dots li button:before {
+		content: none;
+	}
+
+	[data-element*="shopreviews-connect-carousel-widget"] .slick-arrow.carousel-prev {
+		transform: rotate(180deg);
+	}
+}
