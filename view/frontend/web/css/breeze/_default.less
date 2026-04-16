@@ -1,27 +1,46 @@
-@import 'Shopreviews_Connect::css/source/helper/_variables.less';
-@import 'Shopreviews_Connect::css/source/helper/_stars.less';
-@import 'Shopreviews_Connect::css/source/helper/_modal.less';
-
-@import 'Shopreviews_Connect::css/source/widget/_badge-widget.less';
-@import 'Shopreviews_Connect::css/source/widget/_carousel-widget.less';
-
-@import 'Shopreviews_Connect::css/source/slick/_slick.less';
-@import 'Shopreviews_Connect::css/source/_reviews-page.less';
-
-
 & when (@critical) {
-	[data-element*="shopreviews-connect-textual-widget"] [data-element="box-stars"] svg,
-	[data-element*="shopreviews-connect-textual-reviews"] [data-element="box-stars"] svg, 
-	[data-element*="shopreviews-connect-badge-reviews"] [data-element="box-stars"] svg, 
-	[data-element*="shopreviews-connect-carousel-widget"] [data-element="box-stars"] svg {
-		max-width: fit-content;
-	}
+    @import 'Shopreviews_Connect::css/source/helper/_variables.less';
+    @import 'Shopreviews_Connect::css/source/helper/_stars.less';
+    @import 'Shopreviews_Connect::css/source/helper/_modal.less';
 
-	[data-element*="shopreviews-connect-carousel-widget"] .slick-dots li button:before {
-		content: none;
-	}
+    @import 'Shopreviews_Connect::css/source/widget/_badge-widget.less';
+    @import 'Shopreviews_Connect::css/source/widget/_carousel-widget.less';
+    @import 'Shopreviews_Connect::css/source/widget/_textual-widget.less';
 
-	[data-element*="shopreviews-connect-carousel-widget"] .slick-arrow.carousel-prev {
-		transform: rotate(180deg);
-	}
+    // @import 'Shopreviews_Connect::css/source/slick/_slick.less';
+    @import 'Shopreviews_Connect::css/source/_reviews-page.less';
+
+    .reviews-slider .slick-list {
+        --gap: 1rem;
+        --columns-count: 1;
+        gap: var(--gap);
+        @media @media-sm {
+            --columns-count: 2;
+        }
+        @media @media-md {
+            --columns-count: 3;
+        }
+        @media @media-lg {
+            --columns-count: 4;
+        }
+    }
+    .reviews-slider .slick-list > div {
+        width: ~"calc((100% - var(--gap) * (var(--columns-count) - 1)) / var(--columns-count))";
+    }
+    [data-element="box-stars"] svg {
+        max-width: fit-content;
+    }
+}
+
+& when not (@critical) {
+    .reviews-slider.slick-initialized {
+        background: none;
+        width: 100%;
+    }
+    [data-element*="shopreviews-connect-carousel-widget"] .reviews-slider.slick-initialized > div {
+        visibility: visible;
+    }
+    [data-element*="shopreviews-connect-carousel-widget"] .slick-dots li button::before {
+        content: none;
+    }
 }
